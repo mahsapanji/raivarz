@@ -1,0 +1,21 @@
+
+
+.height{
+  height: 150px;
+  border: 1px dashed;
+}
+
+
+.picture{
+  height: 150px;
+object-fit: cover;
+border-radius: 7px;
+}
+
+.close-icon{
+  position: absolute;
+  z-index: 20;
+margin-top: 20;}
+.pointer:hover{
+  cursor: pointer;
+}

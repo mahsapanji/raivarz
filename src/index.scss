@@ -1,0 +1,12 @@
+@import "./config/bootstrap/custom.scss";
+
+@font-face {
+  font-family: "iran-snas";
+  src: local("iran-snas"),
+    url("./assets/content/fonts/IRANSans1.ttf") format("truetype");
+}
+
+body {
+  font-family: "iran-snas";
+
+}

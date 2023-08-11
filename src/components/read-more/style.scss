@@ -1,0 +1,21 @@
+.container {
+  position: absolute;
+  top: 10%;
+  left: 23%;
+  width: 50%;
+}
+
+.text {
+  display: inline;
+  text-align: justify;
+  width: 100%;
+  line-height: 30px;
+}
+
+.read-or-hide {
+  color: rgb(118, 110, 231);
+  cursor: pointer;
+}
+.slider-text {
+  max-height: 350px;
+}

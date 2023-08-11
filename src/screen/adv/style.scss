@@ -1,0 +1,25 @@
+
+.pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  margin: 15px;
+}
+.pic:hover {
+  cursor: pointer;
+}
+.radius-left {
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+
+}
+.radius-right{
+
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+
+}
+
+// .background-image{
+//   background-image: 'url("../../asset/content/house.webp")';
+// }
