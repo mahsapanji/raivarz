@@ -1,5 +1,5 @@
 export type AdvType = {
-    // id: string;
+    id: string;
     streetName: string;
     houseNumber: string;
     addition: string;

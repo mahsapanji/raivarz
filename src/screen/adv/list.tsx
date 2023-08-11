@@ -1,27 +1,23 @@
 import "bootstrap/dist/css/bootstrap.css";
-
 import "./style.scss";
 import { useAppNavigate } from "../../route";
 import { useAppSelector } from "../../redux-config/hooks";
 import { selectAdv } from "../../redux-config/entities/adv";
-import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import AdvCard from "../../components/adv-card";
 
 export const AdvList = (props: any) => {
     const navigate = useAppNavigate();
-    const advvvv = useAppSelector(selectAdv);
-
-console.log("iuiuiui",advvvv)
+    const adv = useAppSelector(selectAdv);
     return (
-        <div className="d-flex flex-column col-12 bg-light">
+        <div className="d-flex flex-column col-12 bg-light h90">
             <section className="d-flex flex-column  col-12 mt-3  justify-content-center align-items-center  bg-light ">
                 <div className="d-flex  flex-row col-12 col-lg-8 my-2   align-items-center justify-content-between  ">
                     <div className="d-flex flex-column col-lg-2 col-2  justify-content-center align-items-center">
                         <button
                             type="button"
-onClick={()=>navigate("/adv/new")}
+                            onClick={() => navigate("/adv/new")}
                             className="d-none d-lg-flex  flex-row col-12 btn btn-danger text-center justify-content-center align-items-center"
                         >
                             Create New
@@ -29,7 +25,7 @@ onClick={()=>navigate("/adv/new")}
                         </button>
 
                         <FontAwesomeIcon
-                        onClick={()=>navigate("/adv/new")}
+                            onClick={() => navigate("/adv/new")}
                             icon={faPlus}
                             className=" d-sm-flex d-lg-none px-2"
                         />

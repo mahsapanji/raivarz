@@ -9,23 +9,13 @@ const advSlice = createSlice({
             state.value.push(action.payload);
         },
 
-        // postUpdated(state, action) {
-        //     const { id, fullName, detail, access, status } = action.payload;
-        //     const existingUser = state.value.find((post) => post.id === id);
-        //     if (existingUser) {
-        //         existingUser.fullName = fullName;
-        //         existingUser.detail = detail;
-        //         existingUser.status = status;
+   
 
-        //         existingUser.access = access;
-        //     }
-        // },
-
-        // userDel(state, action) {
-        //     state.value = state.value.filter((id) => id.id !== action.payload);
-        // },
+        advDel(state, action) {
+            state.value = state.value.filter((id) => id.id !== action.payload);
+        },
     },
 });
-export const { postAdded } = advSlice.actions;
+export const { postAdded ,advDel} = advSlice.actions;
 
 export const AdvReducer = advSlice.reducer;

@@ -19,4 +19,5 @@ export type FormValues = {
 
 export type PropType = {
     submitTxt: string;
+    pic:Function
 };

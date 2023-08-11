@@ -6,7 +6,6 @@ import "./style.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { Contents } from "../../components/contents";
 
 export const AdvForm = (props: PropType & FormikProps<FormValues>) => {
     const {
@@ -17,6 +16,7 @@ export const AdvForm = (props: PropType & FormikProps<FormValues>) => {
         touched,
         errors,
         submitTxt,
+        pic,
     } = props;
 
     const [selectedFile, setSelectedFile] = useState<string>("");
@@ -25,8 +25,9 @@ export const AdvForm = (props: PropType & FormikProps<FormValues>) => {
             e.currentTarget.files &&
             URL.createObjectURL(e.currentTarget.files[0]);
         objectUrl && setSelectedFile(objectUrl);
-        // return () => URL.revokeObjectURL(objectUrl);
+        //  pic(objectUrl);
     };
+
     const color1 = "#f6f6f6";
     const color2 = "#f6f6f800";
     return (
@@ -38,7 +39,7 @@ export const AdvForm = (props: PropType & FormikProps<FormValues>) => {
         >
             <Form
                 onSubmit={handleSubmit}
-                className=" col-5 align-items-start  "
+                className=" col-12 col-lg-5 align-items-start  "
             >
                 <Form.Group
                     controlId="adv-streetName"
@@ -214,20 +215,20 @@ export const AdvForm = (props: PropType & FormikProps<FormValues>) => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                             onSelectFile(e)
                         }
-                        defaultValue={values.picture}
-                        // value={selectedFile}
                     ></Form.Control>
 
                     {selectedFile.length == 0 ? (
-                        <Form.Label
-                            style={{ cursor: "pointer" }}
-                            htmlFor="input-adv-picture"
-                            className="    rounded p-1 col-12   d-flex flex-column justify-content-center align-items-end "
-                        >
-                            <div className="border-dashed rounded px-2 d-flex flex-column col-6     justify-content-center align-items-center height">
-                                <FontAwesomeIcon icon={faPlus} size="xl" />
-                            </div>
-                        </Form.Label>
+                        <div className="ol-12   d-flex flex-column justify-content-center align-items-end">
+                            <Form.Label
+                                style={{ cursor: "pointer" }}
+                                htmlFor="input-adv-picture"
+                                className="    rounded p-1 col-6  d-flex flex-column  "
+                            >
+                                <div className="border-dashed rounded px-2 d-flex flex-column col-12    justify-content-center align-items-center height">
+                                    <FontAwesomeIcon icon={faPlus} size="xl" />
+                                </div>
+                            </Form.Label>
+                        </div>
                     ) : (
                         <div className=" rounded  col-12   d-flex flex-column justify-content-start align-items-end">
                             <div className=" col-2 px-5 pt-1  d-flex flex-column  justify-content-start align-items-start close-icon">
@@ -247,7 +248,6 @@ export const AdvForm = (props: PropType & FormikProps<FormValues>) => {
                         {errors.picture}
                     </Form.Control.Feedback>
                 </Form.Group>
-{/* <Contents setContents={values.picture}/> */}
                 <div className="d-flex flex-row col-12  justify-content-between mt-3">
                     <div className="d-flex flex-column col-6 ">
                         <Form.Group
@@ -422,7 +422,7 @@ export const AdvForm = (props: PropType & FormikProps<FormValues>) => {
 
                 <Button
                     type="submit"
-                    className="col-5 bg-danger my-4"
+                    className="col-12 col-lg-5 bg-danger my-4"
                     variant="danger"
                 >
                     {submitTxt}{" "}

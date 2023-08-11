@@ -1,4 +1,3 @@
-import React from "react";
 
 import { Container, ThemeProvider } from "react-bootstrap";
 import Header from "../../components/header";
@@ -8,7 +7,6 @@ export default (props: any) => {
     return (
         <ThemeProvider>
             <Header />
-            {/* <Container fluid className="bg-light " > */}
             <Container fluid className="bg-light position-relative ">
                 <div>
                     <Outlet />

@@ -1,6 +1,4 @@
 import "bootstrap/dist/css/bootstrap.css";
-
-
 import logo from "../../asset/content/logo.png";
 import "./style.scss";
 const AboutUs = (props: any) => {
