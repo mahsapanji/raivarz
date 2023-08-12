@@ -6,8 +6,8 @@ export const ValidationSchema = () =>
         houseNumber: Yup.number().required(" this field is required .").min(1),
         postalCode: Yup.string().required(" this field is required ."),
         city: Yup.string().required(" this field is required ."),
-            picture: Yup.mixed()
-            .required(" this field is required ."),
+            // picture: Yup.mixed()
+            // .required(" this field is required ."),
         price: Yup.number().required(" this field is required .").min(1),
         size: Yup.number().required(" this field is required .").min(1),
         garage: Yup.string().required(" this field is required ."),

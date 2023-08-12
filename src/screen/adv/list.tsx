@@ -19,6 +19,7 @@ export const AdvList = (props: any) => {
     const dellAdvRedux = (id: any) => {
         dispatch(advDel(id));
     };
+    console.log(adv)
     return (
         <>
             <div className="d-flex flex-column col-12 bg-light h90">
