@@ -21,12 +21,15 @@ export const AdvForm = (props: PropType & FormikProps<FormValues>) => {
 
     const [selectedFile, setSelectedFile] = useState<string>("");
     const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const objectUrl =
-            e.currentTarget.files &&
-            URL.createObjectURL(e.currentTarget.files[0]);
-        objectUrl && setSelectedFile(objectUrl);
-        //  pic(objectUrl);
+        const objectUrl =e.target.files && URL.createObjectURL(e.target.files[0]);
+        if ( objectUrl && objectUrl.length>0){
+        // pic(objectUrl);
+        }
+       
     };
+    
+    
+ 
 
     const color1 = "#f6f6f6";
     const color2 = "#f6f6f800";
@@ -204,7 +207,7 @@ export const AdvForm = (props: PropType & FormikProps<FormValues>) => {
                     <Form.Label className=" col-12 flex-row  d-flex justify-content-end">
                         Upload Image
                     </Form.Label>
-                    <Form.Control
+                    {/* <Form.Control
                         id="input-adv-picture"
                         className="d-none"
                         aria-label="adv-picture"
@@ -215,7 +218,8 @@ export const AdvForm = (props: PropType & FormikProps<FormValues>) => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                             onSelectFile(e)
                         }
-                    ></Form.Control>
+                    ></Form.Control> */}
+                  <input type="file" name="picture" onChange={(e)=> e.target.files && (setSelectedFile(URL.createObjectURL(e.target.files[0])),onSelectFile(e))}/>
 
                     {selectedFile.length == 0 ? (
                         <div className="ol-12   d-flex flex-column justify-content-center align-items-end">

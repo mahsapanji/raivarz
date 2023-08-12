@@ -7,6 +7,11 @@ import { AdvForm } from "../../form";
 import { useAppNavigate } from "../../route";
 import { useState } from "react";
 import { nanoid } from "@reduxjs/toolkit";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faAngleLeft,
+    faArrowLeftLong,
+} from "@fortawesome/free-solid-svg-icons";
 export const NewAdv = (props: any) => {
     const [pic, setPic] = useState<string>("");
     const navigate = useAppNavigate();
@@ -33,12 +38,37 @@ export const NewAdv = (props: any) => {
 
         navigate("/");
     };
+    const color1 = "#f6f6f6";
+    const color2 = "#f6f6f800";
     return (
         <section className="d-flex flex-column  col-12   justify-content-center align-items-center   ">
             <div
                 className="d-flex flex-column   col-12 col-lg-8  align-items-end "
                 style={{ backgroundImage: `url(${house})` }}
             >
+                <div
+                    className="d-flex flex-row-reverse flex-lg-column col-12   col-lg-12  align-items-center justify-content-start pt-1 "
+                    style={{
+                        background: `linear-gradient(115deg,  ${color1} 74%,${color2} 149%)`,
+                    }}
+                >
+                    <div className="d-flex flex-column-reverse flex-lg-row col-1 col-lg-12   justify-content-end pt-3 align-items-start ">
+                        <span className="d-none d-lg-flex ">
+                            <small>Back to preview</small>
+                        </span>
+                        <FontAwesomeIcon
+                            icon={faArrowLeftLong}
+                            className="pe-2 pointer"
+                            size="sm"
+                            onClick={() => navigate(-1)}
+                        />
+                    </div>
+                    <div className="d-flex flex-column  col-8 col-lg-12   justify-content-start  align-items-start pt-3 ">
+                        <span className="text-start col-lg-12 ">
+                            <strong>Create New Listing</strong>
+                        </span>
+                    </div>
+                </div>
                 <Formik<AdvForm.FormValues>
                     validationSchema={AdvForm.ValidationSchema}
                     initialValues={{
@@ -58,6 +88,7 @@ export const NewAdv = (props: any) => {
                     }}
                     onSubmit={(event) => {
                         addAdvRedux(event);
+                        // console.log("event pic", event.picture);
                     }}
                     component={(props: any) => (
                         <AdvForm.AdvForm

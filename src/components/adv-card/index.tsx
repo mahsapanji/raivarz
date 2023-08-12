@@ -13,14 +13,12 @@ import { Link } from "react-router-dom";
 import { useAppNavigate } from "../../route";
 import { advDel, selectAdv } from "../../redux-config/entities/adv";
 import house from "../../asset/content/house.webp";
-const AdvCard = (props: {}) => {
+import { Modal } from "react-bootstrap";
+import { useState } from "react";
+const AdvCard = (props: {setModal:Function,id:Function}) => {
     const adv = useAppSelector(selectAdv);
-    const dispatch = useAppDispatch();
-    const dellAdvRedux = (id: any) => {
-        dispatch(advDel(id));
-    };
+ 
     const navigate = useAppNavigate();
-
     return (
         <>
             {adv.length == 0 ? (
@@ -35,7 +33,7 @@ const AdvCard = (props: {}) => {
                                 <FontAwesomeIcon
                                     icon={faTrash}
                                     className="px-2"
-                                    onClick={() => dellAdvRedux(item.id)}
+                                    onClick={() =>{ props.setModal(true);props.id(item.id)}}
                                 />
                                 <FontAwesomeIcon
                                     onClick={() =>
@@ -93,7 +91,7 @@ const AdvCard = (props: {}) => {
                                     </div>
 
                                     <img
-                                        src={house}
+                                        src={item.picture}
                                         className=" col-4 col-lg-2 rounded "
                                     />
                                 </div>
@@ -102,6 +100,8 @@ const AdvCard = (props: {}) => {
                     );
                 })
             )}
+              
+        
         </>
     );
 };
