@@ -28,7 +28,7 @@ const AdvCard = (props: {setModal:Function,id:Function,item:AdvType[]}) => {
                 adv.map((item, index) => {
                     return (
                         <div className="d-flex flex-row bg-white text-black shadow-sm col-12 col-lg-8 my-2 rounded justify-content-between adv-card  p-3 ">
-                            <div className="d-flex flex-row    col-1  my-2 rounded">
+                            <div className="d-flex flex-row    col-lg-1  col-3  my-2 rounded">
                                 <FontAwesomeIcon
                                     icon={faTrash}
                                     className="px-2"
@@ -45,10 +45,10 @@ const AdvCard = (props: {setModal:Function,id:Function,item:AdvType[]}) => {
                             </div>
                             <Link
                                 to={`adv/${index}`}
-                                className="d-flex flex-row text-black   col-11 my-2 rounded"
+                                className="d-flex flex-row text-black col-lg-11  col-9 my-2 rounded"
                             >
                                 <div className="d-flex flex-row     col-12 ">
-                                    <div className="d-flex flex-column  col-8 col-lg-10  align-items-end px-2 ">
+                                    <div className="d-flex flex-column  col-6 col-lg-10  align-items-end px-2 " style={{overflow:'hidden'}}>
                                         <span className="pt-2">
                                             {item.streetName}
                                             {item.houseNumber}
@@ -63,8 +63,8 @@ const AdvCard = (props: {setModal:Function,id:Function,item:AdvType[]}) => {
                                             {item.city}
                                         </span>
 
-                                        <div className="d-flex flex-row mt-2  ">
-                                            <span>
+                                        <div className="d-flex flex-row mt-2  col-12 justify-content-end ">
+                                            <span >
                                                 {" "}
                                                 {item.size}{" "}
                                                 <FontAwesomeIcon
@@ -91,7 +91,7 @@ const AdvCard = (props: {setModal:Function,id:Function,item:AdvType[]}) => {
 
                                     <img
                                         src={house}
-                                        className=" col-4 col-lg-2 rounded "
+                                        className=" col-6 col-lg-2 col-lg-2 rounded "
                                     />
                                 </div>
                             </Link>
