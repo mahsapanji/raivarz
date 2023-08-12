@@ -11,12 +11,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useAppNavigate } from "../../route";
-import { advDel, selectAdv } from "../../redux-config/entities/adv";
 import house from "../../asset/content/house.webp";
-import { Modal } from "react-bootstrap";
-import { useState } from "react";
-const AdvCard = (props: {setModal:Function,id:Function}) => {
-    const adv = useAppSelector(selectAdv);
+
+import { AdvType } from "../../dto";
+const AdvCard = (props: {setModal:Function,id:Function,item:AdvType[]}) => {
+    const adv = props.item
  
     const navigate = useAppNavigate();
     return (
@@ -91,7 +90,7 @@ const AdvCard = (props: {setModal:Function,id:Function}) => {
                                     </div>
 
                                     <img
-                                        src={item.picture}
+                                        src={house}
                                         className=" col-4 col-lg-2 rounded "
                                     />
                                 </div>

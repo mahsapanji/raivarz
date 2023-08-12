@@ -14,5 +14,5 @@ export const ValidationSchema = () =>
         bedrooms: Yup.number().required(" this field is required .").min(1),
         bathroom: Yup.number().required(" this field is required .").min(1),
         date: Yup.string().required(" this field is required ."),
-        descripption: Yup.string().required(" this field is required ."),
+        description: Yup.string().required(" this field is required ."),
     });

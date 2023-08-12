@@ -23,8 +23,7 @@ export const AdvForm = (props: PropType & FormikProps<FormValues>) => {
     const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const objectUrl =e.target.files && URL.createObjectURL(e.target.files[0]);
         if ( objectUrl && objectUrl.length>0){
-        // pic(objectUrl);
-        }
+setSelectedFile(objectUrl)        }
        
     };
     
@@ -207,7 +206,7 @@ export const AdvForm = (props: PropType & FormikProps<FormValues>) => {
                     <Form.Label className=" col-12 flex-row  d-flex justify-content-end">
                         Upload Image
                     </Form.Label>
-                    {/* <Form.Control
+                    <Form.Control
                         id="input-adv-picture"
                         className="d-none"
                         aria-label="adv-picture"
@@ -218,8 +217,7 @@ export const AdvForm = (props: PropType & FormikProps<FormValues>) => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                             onSelectFile(e)
                         }
-                    ></Form.Control> */}
-                  <input type="file" name="picture" onChange={(e)=> e.target.files && (setSelectedFile(URL.createObjectURL(e.target.files[0])),onSelectFile(e))}/>
+                    ></Form.Control>
 
                     {selectedFile.length == 0 ? (
                         <div className="ol-12   d-flex flex-column justify-content-center align-items-end">
@@ -397,30 +395,30 @@ export const AdvForm = (props: PropType & FormikProps<FormValues>) => {
                 </Form.Group>
 
                 <Form.Group
-                    controlId="adv-descripption"
+                    controlId="adv-description"
                     className="position-relative mt-3"
                 >
                     <Form.Label className=" col-12 flex-row  d-flex justify-content-end">
                         {" "}
-                        Descripption{" "}
+                        Description{" "}
                     </Form.Label>
                     <Form.Control
                         as="textarea"
-                        aria-label="descripption"
+                        aria-label="description"
                         className="d-flex text-start"
                         type="string"
-                        name="descripption"
+                        name="description"
                         placeholder="Amesterdam"
                         onBlur={handleBlur}
-                        value={values.descripption}
+                        value={values.description}
                         onChange={handleChange}
                         isInvalid={
-                            touched.descripption && !!errors.descripption
+                            touched.description && !!errors.description
                         }
                     />
 
                     <Form.Control.Feedback type="invalid" tooltip>
-                        {errors.descripption}
+                        {errors.description}
                     </Form.Control.Feedback>
                 </Form.Group>
 

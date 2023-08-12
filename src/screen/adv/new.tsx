@@ -84,7 +84,7 @@ export const NewAdv = (props: any) => {
                         bedrooms: "",
                         bathroom: "",
                         date: "",
-                        descripption: "",
+                        description: "",
                     }}
                     onSubmit={(event) => {
                         addAdvRedux(event);

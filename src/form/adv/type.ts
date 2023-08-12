@@ -13,7 +13,7 @@ export type FormValues = {
     bedrooms:string;
     bathroom:string;
     date:string;
-    descripption:string;
+    description:string;
 
 
 };

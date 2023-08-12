@@ -86,7 +86,7 @@ export const EditAdv = (props: any) => {
                         bedrooms: adv[Number(id)].bedrooms,
                         bathroom: adv[Number(id)].bathroom,
                         date: adv[Number(id)].date,
-                        descripption: adv[Number(id)].descripption,
+                        description: adv[Number(id)].descripption,
                     }}
                     onSubmit={(event) => {
                         editUserRedux(event,adv[Number(id)].id)

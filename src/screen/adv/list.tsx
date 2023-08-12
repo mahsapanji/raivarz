@@ -8,18 +8,47 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import AdvCard from "../../components/adv-card";
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
+import { AdvType } from "../../dto";
 
 export const AdvList = (props: any) => {
     const navigate = useAppNavigate();
     const adv = useAppSelector(selectAdv);
     const [show, setShow] = useState<boolean>(false);
     const [id, setId] = useState<number>(0);
+    const [showSort, setSort] = useState<AdvType[]>([]);
 
     const dispatch = useAppDispatch();
     const dellAdvRedux = (id: any) => {
         dispatch(advDel(id));
     };
-    console.log(adv)
+
+    const sortPrice = () => {
+        var priceAdv = adv.slice();
+        priceAdv.sort((a, b) => {
+            if (Number(a.price) < Number(b.price)) {
+                return -1;
+            }
+            if (Number(a.price) > Number(b.price)) {
+                return 1;
+            }
+            return 0;
+        });
+        setSort(priceAdv);
+    };
+
+    const sortSize = () => {
+        var sizeAdv = adv.slice();
+        sizeAdv.sort((a, b) => {
+            if (Number(a.size) < Number(b.size)) {
+                return -1;
+            }
+            if (Number(a.size) > Number(b.size)) {
+                return 1;
+            }
+            return 0;
+        });
+        setSort(sizeAdv);
+    };
     return (
         <>
             <div className="d-flex flex-column col-12 bg-light h90">
@@ -29,7 +58,7 @@ export const AdvList = (props: any) => {
                             <button
                                 type="button"
                                 onClick={() => navigate("/adv/new")}
-                                className="d-none d-lg-flex  flex-row col-12 btn btn-danger text-center justify-content-center align-items-center"
+                                className="d-none d-lg-flex  flex-row col-12  text-white bg-danger rounded p-1 text-center justify-content-center align-items-center"
                             >
                                 Create New
                                 <FontAwesomeIcon
@@ -50,12 +79,19 @@ export const AdvList = (props: any) => {
                     </div>
                     <div className="d-flex flex-lg-row flex-column-reverse  col-12 col-lg-8    justify-content-between    ">
                         <div className="d-flex flex-row col-lg-3 col-sm-12 align-items-center justify-content-center my-2 ">
-                            <span className=" d-flex flex-column col-6  bg-secondary text-center py-1 radius-right  shadow-sm text-white">
+                            <button
+                                className=" d-flex flex-column col-6  bg-secondary text-center py-1 radius-right  text-white"
+                                onClick={() => sortPrice()}
+                                
+                            >
                                 Price
-                            </span>
-                            <span className=" d-flex  flex-column col-6  bg-danger text-center py-1  radius-left  shadow-sm text-white">
+                            </button>
+                            <button
+                                className=" d-flex  flex-column col-6  bg-danger text-center py-1  radius-left   text-white"
+                                onClick={() => sortSize()}
+                            >
                                 Size
-                            </span>
+                            </button>
                         </div>
 
                         <div className="d-flex flex-column col-lg-4 col-sm-12 my-2 ">
@@ -70,7 +106,15 @@ export const AdvList = (props: any) => {
                     </div>
                 </section>
                 <section className="d-flex flex-column  col-12  justify-content-center align-items-center  bg-light ">
-                    <AdvCard setModal={setShow} id={setId} />
+                    {showSort.length == 0 ? (
+                        <AdvCard setModal={setShow} id={setId} item={adv} />
+                    ) : (
+                        <AdvCard
+                            setModal={setShow}
+                            id={setId}
+                            item={showSort}
+                        />
+                    )}
                 </section>
             </div>
             <Modal
