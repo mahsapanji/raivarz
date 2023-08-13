@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 
 import { Formik } from "formik";
-import { postAdded, postUpdated } from "../../redux-config/entities/adv/slice";
+import {  postUpdated } from "../../redux-config/entities/adv/slice";
 import { useAppDispatch, useAppSelector } from "../../redux-config/hooks";
 
 import house from "../../asset/content/house.webp";
@@ -21,7 +21,6 @@ export const EditAdv = (props: any) => {
     const color2 = "#f6f6f800";
 
     const editUserRedux = (event: any, id: any) => {
-        console.log("id",id)
         dispatch(
             postUpdated({
                 id: id,

@@ -9,7 +9,6 @@ import { useState } from "react";
 import { nanoid } from "@reduxjs/toolkit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faAngleLeft,
     faArrowLeftLong,
 } from "@fortawesome/free-solid-svg-icons";
 export const NewAdv = (props: any) => {
@@ -88,7 +87,6 @@ export const NewAdv = (props: any) => {
                     }}
                     onSubmit={(event) => {
                         addAdvRedux(event);
-                        // console.log("event pic", event.picture);
                     }}
                     component={(props: any) => (
                         <AdvForm.AdvForm

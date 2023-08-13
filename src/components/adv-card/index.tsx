@@ -1,6 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "./style.scss";
-import { useAppDispatch, useAppSelector } from "../../redux-config/hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faBath,

@@ -1,5 +1,4 @@
 import React from "react";
-import { isString } from "lodash";
 import logo from "../../asset/content/logo.png";
 import { Nav } from "react-bootstrap";
 import "./style.scss"

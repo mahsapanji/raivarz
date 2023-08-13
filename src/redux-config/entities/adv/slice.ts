@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./state";
-import { stat } from "fs";
 
 const advSlice = createSlice({
     name: "adv",
@@ -14,24 +13,17 @@ const advSlice = createSlice({
             const existingAdv = state.value.find((post) => post.id == action.payload.id
           
             );
-            console.log("jj",action.payload)
             if (existingAdv) {
                 existingAdv.addition = action.payload.addition;
                 existingAdv.bathroom = action.payload.bathroom;
                 existingAdv.bedrooms = action.payload.bedrooms;
-
                 existingAdv.date = action.payload.date;
                 existingAdv.descripption = action.payload.descripption;
-
                 existingAdv.garage = action.payload.garage;
-
                 existingAdv.houseNumber = action.payload.houseNumber;
-
-
                 existingAdv.picture = action.payload.picture;
                 existingAdv.postalCode = action.payload.postalCode;
                 existingAdv.price = action.payload.price;
-
                 existingAdv.size = action.payload.size;
                 existingAdv.streetName = action.payload.streetName;
 
