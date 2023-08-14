@@ -4,18 +4,30 @@ import { useAppNavigate } from "../../route";
 import { useAppDispatch, useAppSelector } from "../../redux-config/hooks";
 import { advDel, selectAdv } from "../../redux-config/entities/adv";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+    faCircleXmark,
+    faPlus,
+    faSearch,
+} from "@fortawesome/free-solid-svg-icons";
 import AdvCard from "../../components/adv-card";
 import { Modal } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AdvType } from "../../dto";
-
+import { debounce } from "lodash";
+import { interval } from "rxjs";
+import React from "react";
+import notFound from "../../asset/content/notFound.png"
 export const AdvList = (props: any) => {
     const navigate = useAppNavigate();
     const adv = useAppSelector(selectAdv);
     const [show, setShow] = useState<boolean>(false);
     const [id, setId] = useState<number>(0);
     const [showSort, setSort] = useState<AdvType[]>([]);
+    const [search, setSearch] = useState<string>("");
+    const [result, setResult] = useState<AdvType[]>([]);
+    const [checkEmty, setCheckEmpty] = useState<string>("");
+    const[del,setDelete]=useState<boolean>(false)
+
 
     const dispatch = useAppDispatch();
     const dellAdvRedux = (id: any) => {
@@ -49,6 +61,39 @@ export const AdvList = (props: any) => {
         });
         setSort(sizeAdv);
     };
+
+    console.log(showSort.length);
+
+    function searchTest(search: string) {
+        const response = adv.filter(
+            (searches) =>
+                searches.streetName.includes(search) ||
+                searches.city.includes(search) ||
+                searches.bathroom.includes(search) ||
+                searches.bedrooms.includes(search) ||
+                searches.size.includes(search),
+        );
+        return response;
+    }
+
+    const debouncedSearch = React.useRef(
+        debounce(async (search) => {
+            return setResult((await search) && searchTest(search))
+        }, 700),
+        ).current;
+        
+        React.useEffect(() => {
+            return () => {
+                debouncedSearch.cancel();
+            };
+        }, [debouncedSearch]);
+        
+        async function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+            
+            setCheckEmpty(e.target.value)
+
+        debouncedSearch(e.target.value);
+    }
     return (
         <>
             <div className="d-flex flex-column col-12 bg-light h90">
@@ -82,7 +127,6 @@ export const AdvList = (props: any) => {
                             <button
                                 className=" d-flex flex-column col-6  bg-secondary text-center py-1 radius-right  text-white"
                                 onClick={() => sortPrice()}
-                                
                             >
                                 Price
                             </button>
@@ -95,26 +139,38 @@ export const AdvList = (props: any) => {
                         </div>
 
                         <div className="d-flex flex-column col-lg-4 col-sm-12 my-2 ">
-                            <div className="">
+                            <div className="d-flex flex-row justify-content-between align-items-center border rounded  bg-secondary col-12 text-start p-1 ">
+                              
                                 <input
-                                    className=" border rounded  bg-secondary col-12 text-start p-1 "
-                                    type="text"
+                                    className="  none-border bg-secondary col-10 text-start p-1 "
+                                    type="search"
                                     placeholder="Saerch for a house"
+                                    onChange={handleChange}
+                                />
+                                <FontAwesomeIcon
+                                    icon={faSearch}
+                                    className="col-1"
                                 />
                             </div>
                         </div>
                     </div>
                 </section>
                 <section className="d-flex flex-column  col-12  justify-content-center align-items-center  bg-light ">
-                    {showSort.length == 0 ? (
+                    {result.length > 0 ? (
+                        <AdvCard setModal={setShow} id={setId} item={result} />
+                    ) : 
+                    showSort.length == 0 ? (
                         <AdvCard setModal={setShow} id={setId} item={adv} />
-                    ) : (
+                    ) :(result.length==0 && checkEmty.length>0)? 
+                    
+<img src={notFound} />                    :
+                    
+                    (
                         <AdvCard
                             setModal={setShow}
                             id={setId}
-                            item={showSort}
-                        />
-                    )}
+                            item={showSort} /> )
+                    }
                 </section>
             </div>
             <Modal
